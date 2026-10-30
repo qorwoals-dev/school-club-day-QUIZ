@@ -1,0 +1,9 @@
+{
+  "rules": {
+    ".read": true,
+    "game": { ".write": true },
+    "players": { ".write": true },
+    "answers": { ".write": true },
+    "presence": { ".write": true }
+  }
+}

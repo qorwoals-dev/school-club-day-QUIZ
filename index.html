@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#2a1660">
+  <title>정보기술전공심화 동아리 퀴즈</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="player">
+  <main>
+    <section id="s-loading" class="center">
+      <div class="spinner"></div>
+      <p class="muted">연결 중...</p>
+    </section>
+
+    <section id="s-setup" class="center" hidden>
+      <div class="card">
+        <h2>⚙️ 아직 준비 중이에요</h2>
+        <p id="setupMsg">Firebase 설정이 아직 안 됐어요. README.md를 확인해주세요.</p>
+      </div>
+    </section>
+
+    <section id="s-join" class="center" hidden>
+      <p class="school">대진전자통신고등학교</p>
+      <h1 class="logo">정보기술<br>전공심화 동아리<br><span>QUIZ</span></h1>
+      <form id="joinForm" class="card">
+        <label for="name" class="label">닉네임 (이름 또는 학번)</label>
+        <input id="name" maxlength="12" autocomplete="off" placeholder="예) 2학년 홍길동">
+        <button id="joinBtn" class="btn primary">입장하기 🚀</button>
+        <p id="joinErr" class="err"></p>
+      </form>
+    </section>
+
+    <section id="s-lobby" class="center" hidden>
+      <div class="pulse">✅</div>
+      <h2><span id="lobbyName"></span> 님 입장 완료!</h2>
+      <p>퀴즈가 시작될 때까지 잠시 기다려주세요</p>
+      <p class="muted">지금 참가자 <b id="lobbyCount">0</b>명</p>
+    </section>
+
+    <section id="s-question" hidden>
+      <div class="qhead">
+        <span id="qNum" class="pill"></span>
+        <span id="qTimer" class="timer"></span>
+      </div>
+      <div class="bar"><div id="qBar"></div></div>
+      <h2 id="qText" class="qtext"></h2>
+      <div id="qOpts" class="opts"></div>
+      <p id="qTimeup" class="timeup" hidden>⏰ 시간 종료!</p>
+    </section>
+
+    <section id="s-answered" class="center" hidden>
+      <div class="pulse">⏳</div>
+      <h2>답 제출 완료!</h2>
+      <p id="myPick" class="mypick"></p>
+      <p class="muted">다른 친구들을 기다리는 중... (<b id="ansCount">0</b>명 응답)</p>
+    </section>
+
+    <section id="s-reveal" class="center" hidden>
+      <div id="rvIcon" class="big-emoji"></div>
+      <h1 id="rvTitle"></h1>
+      <p id="rvGain" class="gain"></p>
+      <p id="rvAnswer" class="answer-line"></p>
+      <div class="mystat">
+        <div><small>내 점수</small><b id="rvScore"></b></div>
+        <div><small>현재 순위</small><b id="rvRank"></b></div>
+      </div>
+      <p class="muted">다음 문제를 기다리는 중...</p>
+    </section>
+
+    <section id="s-ended" class="center" hidden>
+      <h1>🎉 퀴즈 끝!</h1>
+      <div class="mystat">
+        <div><small>최종 점수</small><b id="endScore"></b></div>
+        <div><small>최종 순위</small><b id="endRank"></b></div>
+      </div>
+      <ol id="endTop" class="toplist"></ol>
+      <p class="muted">정보기술전공심화 동아리에 관심 가져줘서 고마워요 💜</p>
+    </section>
+  </main>
+
+  <footer id="foot" class="pfoot" hidden>
+    <span id="footName"></span>
+    <b id="footScore"></b>
+  </footer>
+
+  <script type="module" src="player.js"></script>
+</body>
+</html>

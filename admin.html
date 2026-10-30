@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>퀴즈 관리자</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin">
+  <section id="login" class="center-screen">
+    <form id="loginForm" class="card login">
+      <h1>🔐 관리자</h1>
+      <p class="muted-dark">정보기술전공심화 동아리 퀴즈</p>
+      <input type="password" id="pw" placeholder="비밀번호" autofocus>
+      <button class="btn primary">들어가기</button>
+      <p id="pwErr" class="err"></p>
+    </form>
+  </section>
+
+  <section id="setup" class="center-screen" hidden>
+    <div class="card login">
+      <h2>⚙️ Firebase 설정 필요</h2>
+      <p id="setupMsg">firebase-config.js에 Firebase 설정값을 넣어주세요. 방법은 README.md에 있어요.</p>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="topbar">
+      <div class="brand">
+        <b>정보기술전공심화 동아리 퀴즈</b>
+        <span id="statusPill" class="pill"></span>
+      </div>
+      <div class="tb-right">
+        <span id="onlineInfo" class="online"></span>
+        <button id="qrBtn" class="tbtn">QR 크게</button>
+        <button id="resetBtn" class="tbtn">점수 초기화</button>
+        <button id="kickBtn" class="tbtn danger">참가자 전체 삭제</button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <!-- 대기실 -->
+      <section id="v-lobby" class="v">
+        <div class="lobby-grid">
+          <div class="card qrcard">
+            <p class="school-dark">대진전자통신고등학교</p>
+            <h2>📱 QR 찍고 참가하세요!</h2>
+            <div id="qr" class="qr"></div>
+            <input id="joinUrl" class="url" title="참가 주소 (바꾸면 QR도 바뀌어요)">
+          </div>
+          <div class="card plist">
+            <h2>참가자 <span id="pCount" class="count">0</span>명</h2>
+            <div id="chips" class="chips"></div>
+            <button id="startBtn" class="btn primary huge">퀴즈 시작 ▶</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 문제 -->
+      <section id="v-question" class="v" hidden>
+        <div class="q-top">
+          <span id="aqNum" class="pill big"></span>
+          <div id="aTimer" class="atimer"><span></span></div>
+          <span id="aAnswered" class="pill big"></span>
+        </div>
+        <h1 id="aqText" class="aq"></h1>
+        <div id="aOpts" class="aopts"></div>
+        <div class="ctrl">
+          <button id="revealBtn" class="btn">정답 바로 공개</button>
+          <button id="endBtn" class="btn ghost">퀴즈 종료</button>
+        </div>
+      </section>
+
+      <!-- 정답 공개 -->
+      <section id="v-reveal" class="v" hidden>
+        <h2 id="rqText" class="aq small"></h2>
+        <div id="rOpts" class="aopts reveal"></div>
+        <div class="card board">
+          <h2>🏆 실시간 순위 TOP 5</h2>
+          <ol id="top5" class="rank"></ol>
+        </div>
+        <div class="ctrl">
+          <label class="auto"><input type="checkbox" id="autoNext" checked> 자동 진행 <span id="autoLeft"></span></label>
+          <button id="nextBtn" class="btn primary">다음 문제 ▶</button>
+        </div>
+      </section>
+
+      <!-- 종료 -->
+      <section id="v-ended" class="v" hidden>
+        <h1 class="title">🎉 최종 결과</h1>
+        <div id="podium" class="podium"></div>
+        <ol id="fullRank" class="rank card"></ol>
+        <div class="ctrl">
+          <button id="againBtn" class="btn primary">대기실로 (점수 초기화)</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="qrOverlay" class="overlay" hidden>
+    <div class="card">
+      <div id="qrBig" class="qr"></div>
+      <p id="qrBigUrl" class="muted-dark"></p>
+      <p class="muted-dark">아무 곳이나 클릭하면 닫혀요</p>
+    </div>
+  </div>
+
+  <script src="qrcode.min.js"></script>
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
